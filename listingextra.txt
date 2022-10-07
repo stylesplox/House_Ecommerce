@@ -1,0 +1,146 @@
+const mongoose = require('mongoose')
+
+const listingSchema = mongoose.Schema(
+    {
+        bathrooms:{
+            type: Number,
+            required: true,
+        },
+        bedrooms:{
+            type: Number,
+            required: true,
+        },
+        discountedPrice:{
+            type: Number,
+            required: true,
+        },
+        furnished:{
+            type: Boolean,
+            required: true,
+        },
+        geolocation:{
+            type: map,
+            of: Number,
+            required: true,
+        },
+        images:[{
+            type: Object,
+            required: true,
+        }],
+        latitude:{
+            type: Number,
+            required: true,
+        },
+        location:{
+            type: String,
+            required: true,
+        },
+        longitude:{
+            type: Number,
+            required: true,
+        },
+        name:{
+            type: String,
+            required: true,
+        },
+        offer:{
+            type: Boolean,
+            required: true,
+        },
+        parking:{
+            type: Boolean,
+            required: true,
+        },
+        regularPrice:{
+            type: Number,
+            required: true,
+        },
+        timestamp:{
+            type: Date,
+            default: Date.now,
+            required: true,
+            
+        },
+        type:{
+            type: String,
+            required: true,
+            enum: ['Rent', 'Sale'],
+        },
+        userRef: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'User',
+          },
+    }
+)
+
+module.exports = mongoose.model('Listing', listingSchema)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const asyncHandler = require('express-async-handler')
+
+const Listing= require('../models/listingModel')
+
+const createListing = asyncHandler(async (req,res) =>{
+    const { bathrooms,bedrooms,discountedPrice,furnished,geolocation,imgUrl,latitude,location,longitude,name,offer,
+        parking,regularPrice,timestamp,type,userRef } = req.body
+
+    const user = await User.findById(req.user.id)
+    
+    if (!user){
+        res.status(401)
+        throw new Error('User not found')
+    }
+
+    const listing = await Listing.create({
+        bathrooms,
+        bedrooms,
+        discountedPrice,
+        furnished,
+       // geolocation,
+        imgUrl,
+        latitude,
+        location,
+        longitude,
+        name,
+        offer,
+        parking,
+        regularPrice,
+        timestamp,
+        type,
+        userRef: req.user.id
+    })
+
+    if (listing) {
+        res.status(201).json({
+          _id: listing._id,
+          name: listing.name,
+          
+        })
+      } else {
+        res.status(400)
+        throw new error('Invalid listing data')
+      }
+        
+})
+
+const getListing = asyncHandler(async(req,res) =>{
+    res.json({message:'get listings here'})
+})
+module.exports = {
+    createListing,
+    getListing,
+}
