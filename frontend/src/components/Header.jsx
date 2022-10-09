@@ -27,11 +27,12 @@ function Header() {
 }
 
   return (
-    <header className='header'>
+    <footer className='navbar'>
+      <nav className='navbarNav'>
+      <ul className='navbarListItems'>
       <div className='logo'>
-        <Link to='/'>Support Desk</Link>
+        <Link to='/'>House Ecommerce</Link>
       </div>
-      <ul>
       <li className='navbarListItem' onClick={() => navigate('/')}>
         <ExploreIcon
           fill={pathMatchRoute('/') ? '#2c2c2c' : '#8f8f8f'}
@@ -83,7 +84,7 @@ function Header() {
           Profile
         </p>
       </li>
-          <li onClick={onLogout}>
+          <li className='navbarListItem' onClick={onLogout}>
             <button className='btn'>
               <FaSignOutAlt /> Logout
             </button>
@@ -91,21 +92,24 @@ function Header() {
           </ul>
         ) : (
           <>
-            <li>
+            <ul className='navbarListItems'>
+            <li className='navbarListItem'>
               <Link to='/login'>
                 <FaSignInAlt /> Login
               </Link>
             </li>
-            <li>
+            <li className='navbarListItem'>
               <Link to='/register'>
                 <FaUser /> Register
               </Link>
             </li>
+            </ul>
           </>
         )}
         
       </ul>
-    </header>
+      </nav>
+    </footer>
   )
 }
 
