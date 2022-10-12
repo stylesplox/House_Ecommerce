@@ -11,7 +11,7 @@ function Offers() {
   //const [listings, setListings] = useState(null)
   const [lastFetchedListing, setLastFetchedListing] = useState(null)
   const { listings, isLoading, isSuccess } = useSelector((state) => state.listing)
-  
+  console.log(listings)
 
   const dispatch = useDispatch()
   const params = useParams()
@@ -34,7 +34,6 @@ function Offers() {
   },[dispatch])
   //console.log(listings.filter(listing => listing.offer ===true))
   
-  console.log('listings '+listings.listing)
 
   const filterListings= listings.filter(listing => listing.type ===params.categoryName)
   if (isLoading) {

@@ -1,11 +1,11 @@
 const asyncHandler = require('express-async-handler')
-
 const User = require('../models/userModel')
 const Listing= require('../models/listingModel')
 
 
+
 const createListing = asyncHandler(async (req,res) =>{
-    const { bathrooms,bedrooms,discountedPrice,furnished,geolocation,imgUrl,latitude,location,longitude,name,offer,
+    const { bathrooms,bedrooms,discountedPrice,furnished,imgUrl,latitude,longitude,location,name,offer,
         parking,regularPrice,timestamp,type,userRef } = req.body
 
     const user = await User.findById(req.user.id)
@@ -14,6 +14,7 @@ const createListing = asyncHandler(async (req,res) =>{
         res.status(401)
         throw new Error('User not found')
     }
+    
 
     console.log({bathrooms})
     console.log(bedrooms)
@@ -92,7 +93,8 @@ const getListings = asyncHandler(async(req,res) =>{
         throw new Error('User not found')
     }
 
-    const listings = await Listing.find({ user:req.user.id })
+    const listings = await Listing.find({})
+    
 
     res.status(200).json(listings)
 })
@@ -112,16 +114,42 @@ const getListing = asyncHandler(async (req, res) => {
       res.status(404)
       throw new Error('listing not found')
     }
-    
+   /* 
+    if (listing.userRef.toString() !== req.user.id) {
+      res.status(401)
+      throw new Error('Not Authorized')
+    }
+  */
+    res.status(200).json(listing)
+  })
+
+  const deleteListing = asyncHandler(async (req, res) => {
+    // Get user using the id in the JWT
+    const user = await User.findById(req.user.id)
+  
+    if (!user) {
+      res.status(401)
+      throw new Error('User not found')
+    }
+
+    const listing = await Listing.findById(req.params.id)
+    if (!listing) {
+      res.status(404)
+      throw new Error('Ticket not found')
+    }
+  
     if (listing.userRef.toString() !== req.user.id) {
       res.status(401)
       throw new Error('Not Authorized')
     }
   
-    res.status(200).json(listing)
+    await Listing.remove(listing)
+  
+    res.status(200).json({ success: true })
   })
 module.exports = {
     createListing,
     getListings,
     getListing,
+    deleteListing,
 }

@@ -4,11 +4,12 @@ const { registerUser, loginUser, getMe, updateUser } = require('../controllers/u
 
 
 
+
 const { protect } = require('../middleware/authMiddleware')
 
 router.post('/', registerUser)
 router.post('/login',loginUser)
-router.get('/me',protect, getMe)
+router.get('/me/:id', protect, getMe)
 router.put('/', protect, updateUser)
 
 

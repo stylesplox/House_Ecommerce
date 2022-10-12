@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { FaUser } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import { register, reset } from '../features/auth/authSlice'
+import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
+
 import Spinner from '../components/Spinner'
 
 function Register() {
@@ -69,19 +71,19 @@ function Register() {
 
   return (
     <>
-      <section className='heading'>
-        <h1>
-          <FaUser /> Register
-        </h1>
+      <div className='pageContainer'>
+        <header>
+          
+          <p className='pageHeader'>Register</p>
+        </header>
         <p>Please create an account</p>
-      </section>
+     
 
-      <section className='form'>
+      
         <form onSubmit={onSubmit}>
-          <div className='form-group'>
             <input
               type='text'
-              className='form-control'
+              className='nameInput'
               id='name'
               name='name'
               value={name}
@@ -89,11 +91,9 @@ function Register() {
               placeholder='Enter your name'
               required
             />
-          </div>
-          <div className='form-group'>
             <input
               type='email'
-              className='form-control'
+              className='emailInput'
               id='email'
               name='email'
               value={email}
@@ -101,11 +101,9 @@ function Register() {
               placeholder='Enter your email'
               required
             />
-          </div>
-          <div className='form-group'>
             <input
               type='password'
-              className='form-control'
+              className='passwordInput'
               id='password'
               name='password'
               value={password}
@@ -113,11 +111,9 @@ function Register() {
               placeholder='Enter password'
               required
             />
-          </div>
-          <div className='form-group'>
             <input
               type='password'
-              className='form-control'
+              className='passwordInput'
               id='password2'
               name='password2'
               value={password2}
@@ -125,12 +121,18 @@ function Register() {
               placeholder='Confirm password'
               required
             />
-          </div>
-          <div className='form-group'>
-            <button className='btn btn-block'>Submit</button>
+          <div className='signUpBar'>
+            <p className='signUpText'>Sign Up</p>
+            <button className='signUpButton'>
+              <ArrowRightIcon fill='#ffffff' width='34px' height='34px' />
+            </button>
           </div>
         </form>
-      </section>
+
+        <Link to='/login' className='registerLink'>
+          Sign In Instead
+        </Link>
+        </div>
     </>
   )
 }

@@ -18,8 +18,7 @@ function Listing() {
   const user = JSON.parse(localStorage.getItem('user'))
 
   
-  const navigate = useNavigate()
-  const params = useParams()
+
   const dispatch = useDispatch()
   const {listingId} = useParams()
 

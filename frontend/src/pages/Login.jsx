@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 import { FaSignInAlt } from 'react-icons/fa'
 import {useSelector, useDispatch} from 'react-redux'
 import {login, reset} from '../features/auth/authSlice'
-import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import Spinner from '../components/Spinner'
+
 
 
 
@@ -73,10 +75,10 @@ useEffect(() => {
         </header>
 
         <form onSubmit={onSubmit}>
-          <div className='form-group'>
+         
             <input
               type='email'
-              className='form-control'
+              className='emailInput'
               id='email'
               name='email'
               value={email}
@@ -84,11 +86,11 @@ useEffect(() => {
               placeholder='Enter your email'
               required
             />
-          </div>
+        
           <div className='passwordInputDiv'>
             <input
               type='password'
-              className='form-control'
+              className='passwordInput'
               id='password'
               name='password'
               value={password}
@@ -97,10 +99,18 @@ useEffect(() => {
               required
             />
           </div>
-          <div className='form-group'>
-            <button className='btn btn-block'>Submit</button>
+          
+          <div className='signInBar'>
+            <p className='signInText'>Sign In</p>
+            <button className='signInButton'>
+              <ArrowRightIcon fill='#ffffff' width='34px' height='34px' />
+            </button>
           </div>
         </form>
+
+        <Link to='/register' className='registerLink'>
+          Sign Up Instead
+        </Link>
         </div>
     </>
   )

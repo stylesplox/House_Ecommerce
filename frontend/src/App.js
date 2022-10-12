@@ -10,6 +10,7 @@ import Offers from './pages/Offers'
 import Category from './pages/Category'
 import Listing from './pages/Listing'
 import CreateListing from './pages/CreateListing'
+import Contact from './pages/Contact'
 //import CreateListing from './pages/CreateListing'
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
             <Route path='/category/:categoryName' element={<Category />} />
             <Route path='/category/:categoryName/:listingId' element={<Listing />} />
             <Route path='/create-listing' element={<CreateListing />} />
-
+            <Route path='/contact/:landlordId' element={<Contact />} />
 
           </Routes>
         </div>

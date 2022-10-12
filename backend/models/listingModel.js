@@ -23,6 +23,7 @@ const listingSchema = mongoose.Schema(
             type: Object,
             required: true,
         },
+        /*
         geolocation:{
             lat:{
                 type:Number,
@@ -34,6 +35,17 @@ const listingSchema = mongoose.Schema(
                 required: true,
                 default: -0.09
             }
+        },
+        */
+        latitutde:{
+            type:Number,
+            required: true,
+            default: 51.505
+        },
+        longitude:{
+            type:Number,
+            required: true,
+            default: -0.09
         },
         location:{
             type: String,

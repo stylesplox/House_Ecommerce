@@ -31,18 +31,38 @@ const getListing = async (listingId, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
+      
+
     },
   }
+
+  
 
   const response = await axios.get(API_URL + listingId, config)
 
   return response.data
 }
 
+// Close ticket
+const deleteListing = async (listingId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+
+  const response = await axios.delete(API_URL + listingId,config)
+
+   
+  return response.data
+}
+
+
 const listingService ={
     createListing,
     getListings,
     getListing,
+    deleteListing,
 }
 
 export default listingService

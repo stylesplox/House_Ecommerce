@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { v4 as uuidv4 } from 'uuid'
 import { createListing } from '../features/listings/listingSlice'
 import Spinner from '../components/Spinner'
 
@@ -69,24 +68,8 @@ function CreateListing() {
       const listingData={
         ...formData,
       }
-      /*
-      const listingData = {
-        type,
-        name,
-        bedrooms,
-        bathrooms,
-        parking,
-        furnished,
-        address,
-        offer,
-        regularPrice,
-        discountedPrice,
-        images:'exterior.jpeg',
-        latitude,
-      longitude,
-      }
-      */
-     console.log(listingData)
+     
+      
       dispatch(createListing(listingData))
 
       toast.success('Listing saved')
@@ -109,7 +92,13 @@ function CreateListing() {
       boolean = false
     }
 
-   
+   // Files
+   if (e.target.files) {
+    setFormData((prevState) => ({
+      ...prevState,
+      imgUrl: e.target.files,
+    }))
+  }
 
     // Text/Booleans/Numbers
     if (!e.target.files) {

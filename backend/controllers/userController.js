@@ -38,6 +38,7 @@ const registerUser = asyncHandler(async (req,res) =>{
 
   if (user) {
     res.status(201).json({
+      
       _id: user._id,
       name: user.name,
       email: user.email,
@@ -80,11 +81,16 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   /api/users/me
 // @access  Private
 const getMe = asyncHandler(async (req, res) => {
+     const user = await User.findById(req.params.id)
+      console.log('me')
+      console.log(user._id)
+      /*
       const user = {
       id: req.user._id,
       email: req.user.email,
       name: req.user.name,
     }
+    */
      res.status(200).json(user)
   })
 
