@@ -43,7 +43,7 @@ function Profile() {
       setTimeout(() => {
         navigate('/profile')
         dispatch(getListings())
-      }, 5000);
+      }, 6000);
        
         
         
@@ -72,7 +72,7 @@ function Profile() {
         email,
         name,
       }
-  
+      
       dispatch(updateUser(userData))
       
     } catch (error) {

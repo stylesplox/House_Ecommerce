@@ -6,7 +6,17 @@ const Listing= require('../models/listingModel')
 
 const createListing = asyncHandler(async (req,res) =>{
     const { bathrooms,bedrooms,discountedPrice,furnished,imgUrl,latitude,longitude,location,name,offer,
-        parking,regularPrice,timestamp,type,userRef } = req.body
+        parking,regularPrice,timestamp,type } = req.body
+
+    console.log('req.file', req.file);
+  
+    const file_name = new Date().getTime() +'_'+req.file.originalname;
+
+    let fs = require('fs');
+    fs.rename(req.file.path, 'backend/uploads/'+file_name, function(err) {
+      if ( err ) console.log('ERROR: ' + err);
+    });
+
 
     const user = await User.findById(req.user.id)
     
@@ -16,28 +26,14 @@ const createListing = asyncHandler(async (req,res) =>{
     }
     
 
-    console.log({bathrooms})
-    console.log(bedrooms)
-    console.log(discountedPrice)
-    console.log(furnished)
-    console.log({imgUrl})
-    console.log({latitude})
-    console.log({location})
-    console.log({longitude})
-    console.log(name)
-    console.log(offer)
-    console.log(parking)
-    console.log(regularPrice)
-    console.log(timestamp)
-    console.log(type)
-    console.log(userRef)
+    
 
     const listing = await Listing.create({
         bathrooms,
         bedrooms,
       discountedPrice,
       furnished,
-      imgUrl: 'exterior_4.jpeg',
+      imgUrl : file_name,
       latitude,
       location,
       longitude,
@@ -50,26 +46,7 @@ const createListing = asyncHandler(async (req,res) =>{
       userRef: req.user.id
     })
 
-/*
-    const listing = await Listing.create({
-      bathrooms: 2,
-      bedrooms: 2,
-      discountedPrice: 34333,
-      furnished: true,
-      imgUrl: 'exterior_4.jpeg',
-      latitude: 51.34,
-      location: 'wazwe',
-      longitude:-43.43,
-      name: 'Thwe Grove',
-      offer: true,
-      parking: true,
-      regularPrice: 20000,
-      timestamp,
-      type: 'rent',
-      userRef: req.user.id
-  })
 
-*/
     console.log({listing})
     console.log(listing)
     if (listing) {

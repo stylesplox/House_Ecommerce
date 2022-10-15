@@ -13,7 +13,7 @@ function ListingItem({ listing, id, onEdit, onDelete }) {
         className='categoryListingLink'
       >
         <img
-          src={require(`../assets/house-images/${listing.imgUrl}`)}
+          src={require(`../../../backend/uploads/${listing.imgUrl}`)}
 
           alt={listing.name}
           className='categoryListingImg'

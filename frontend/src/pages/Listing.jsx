@@ -4,6 +4,7 @@ import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import {getListing} from '../features/listings/listingSlice'
+
 //import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 //import { Swiper, SwiperSlide } from 'swiper/react'
 //import 'swiper/swiper-bundle.css'
@@ -59,7 +60,7 @@ function Listing() {
       <div className='listingDetails'>
       {typeof(listing.imgUrl) !== 'undefined' ?
       <img
-          src={require(`../assets/house-images/${listing.imgUrl}`)}
+          src={require(`../uploads/${listing.imgUrl}`)}
 
           alt={listing.name}
           className='categoryListingImg'

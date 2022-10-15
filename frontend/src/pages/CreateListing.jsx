@@ -64,12 +64,14 @@ function CreateListing() {
   }, [isMounted])
 
   const onSubmit = async (e) => {
+    e.preventDefault()
     try{
+      
       const listingData={
         ...formData,
       }
      
-      
+        console.log(listingData)
       dispatch(createListing(listingData))
 
       toast.success('Listing saved')
@@ -96,7 +98,8 @@ function CreateListing() {
    if (e.target.files) {
     setFormData((prevState) => ({
       ...prevState,
-      imgUrl: e.target.files,
+      imgUrl: e.target.files[0],
+      // imgUrl: "image_data",
     }))
   }
 
@@ -121,7 +124,7 @@ function CreateListing() {
       </header>
 
       <main>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} encType="multipart/form-data" >
           <label className='formLabel'>Sell / Rent</label>
           <div className='formButtons'>
             <button
@@ -341,6 +344,7 @@ function CreateListing() {
             max='6'
             accept='.jpg,.png,.jpeg'
             multiple
+            // name='files'
             required
           />
           <button type='submit' className='primaryButton createListingButton'>

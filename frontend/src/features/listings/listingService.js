@@ -11,7 +11,23 @@ const createListing = async (listingData, token) => {
     },
   }
   console.log({listingData})
-  const response = await axios.post(API_URL, listingData, config)
+  var bodyFormData = new FormData();
+  bodyFormData.append('name', listingData.name);
+  bodyFormData.append('type', listingData.type);
+  bodyFormData.append('bedrooms', listingData.bedrooms);
+  bodyFormData.append('bathrooms', listingData.bathrooms);
+  bodyFormData.append('parking', listingData.parking);
+  bodyFormData.append('furnished', listingData.furnished);
+  bodyFormData.append('location', listingData.location);
+  bodyFormData.append('offer', listingData.offer);
+  bodyFormData.append('regularPrice', listingData.regularPrice);
+  bodyFormData.append('discountedPrice', listingData.discountedPrice);
+  bodyFormData.append('imgUrl', listingData.imgUrl);
+  bodyFormData.append('longtitude', listingData.longtitude);
+  bodyFormData.append('latitude', listingData.latitude);
+  bodyFormData.append('userRef', listingData.userRef);
+
+  const response = await axios.post(API_URL, bodyFormData, config)
 
   return response.data
 }
