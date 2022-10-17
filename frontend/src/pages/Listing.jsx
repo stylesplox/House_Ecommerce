@@ -60,7 +60,7 @@ function Listing() {
       <div className='listingDetails'>
       {typeof(listing.imgUrl) !== 'undefined' ?
       <img
-          src={require(`../uploads/${listing.imgUrl}`)}
+          src={require(`../../../backend/uploads/${listing.imgUrl}`)}
 
           alt={listing.name}
           className='categoryListingImg'

@@ -138,8 +138,9 @@ export const deleteListing = createAsyncThunk(
   async(listingId, thunkAPI) =>{
     try{
       const token = thunkAPI.getState().auth.user.token
-      return await listingService.deleteListing(listingId, token)
-      
+      const listingDeleted = await listingService.deleteListing(listingId, token)
+       console.log(listingDeleted)
+      return listingDeleted
     } catch (error){
       const message =
       (error.response &&

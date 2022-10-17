@@ -119,7 +119,22 @@ const getListing = asyncHandler(async (req, res) => {
       res.status(401)
       throw new Error('Not Authorized')
     }
-  
+
+    console.log(listing)
+    /*
+    
+    const fs = require("fs");
+
+    const path = `backend/uploads/${listing.imgUrl}`
+
+    fs.unlink(path, function (err) {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log("File removed:", path);
+    }
+  });
+  */
     await Listing.remove(listing)
   
     res.status(200).json({ success: true })
