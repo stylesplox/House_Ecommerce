@@ -86,7 +86,9 @@ function Header() {
       </li>
           <li className='navbarListItem' onClick={onLogout}>
             <button className='btn'>
-              <FaSignOutAlt /> Logout
+              <FaSignOutAlt   width='36px'
+          height='36px' /> 
+              <p>Logout</p>
             </button>
           </li>
           </ul>
@@ -95,12 +97,16 @@ function Header() {
             <ul className='navbarListItems'>
             <li className='navbarListItem'>
               <Link to='/login'>
-                <FaSignInAlt /> Login
+                <FaSignInAlt   width='36px'
+          height='36px'/> 
+                <p>Login</p>
               </Link>
             </li>
             <li className='navbarListItem'>
               <Link to='/register'>
-                <FaUser /> Register
+                <FaUser   width='36px'
+          height='36px'/> 
+                <p>Register</p>
               </Link>
             </li>
             </ul>

@@ -8,7 +8,7 @@ import Spinner from '../components/Spinner'
 
 function CreateListing() {
   // eslint-disable-next-line
-  const [geolocationEnabled, setGeolocationEnabled] = useState(true)
+  const [geolocationEnabled, setGeolocationEnabled] = useState(false)
   const { user,isLoading } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
 

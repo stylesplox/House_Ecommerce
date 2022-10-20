@@ -96,6 +96,7 @@ function Profile() {
   <main>
   <div className='profileDetailsHeader'>
           <p className='profileDetailsText'>Personal Details</p>
+          {/*
           <p
             className='changePersonalDetails'
             onClick={() => {
@@ -105,6 +106,7 @@ function Profile() {
           >
             {changeDetails ? 'done' : 'change'}
           </p>
+          */}
         </div>
         <div className='profileCard'>
           <form>
