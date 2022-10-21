@@ -11,7 +11,6 @@ function Offers() {
   //const [listings, setListings] = useState(null)
   const [lastFetchedListing, setLastFetchedListing] = useState(null)
   const { listings, isLoading, isSuccess } = useSelector((state) => state.listing)
-  console.log(listings)
 
   const dispatch = useDispatch()
   const params = useParams()

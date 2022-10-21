@@ -29,14 +29,10 @@ function App() {
             <Route path='/profile' element={<Profile />}/>
             </Route>
 
-            <Route path='/offers' element={<Offers />}>
             <Route path='/offers' element={<Offers />}/>
-            </Route>
 
 
-            <Route path='/category/:categoryName' element={<Category />} >
             <Route path='/category/:categoryName' element={<Category />} />
-            </Route>
 
             <Route path='/category/:categoryName/:listingId' element={<PrivateRoute />} >
             <Route path='/category/:categoryName/:listingId' element={<Listing />} />

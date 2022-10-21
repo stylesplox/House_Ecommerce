@@ -97,7 +97,6 @@ export const getListings = createAsyncThunk(
     try {
       const token = localStorage.getItem('token')
       const data = await listingService.getListings(token)
-      console.log(data)
       return data
     } catch (error) {
       const message =
