@@ -63,12 +63,10 @@ const createListing = asyncHandler(async (req,res) =>{
 })
 
 const getListings = asyncHandler(async(req,res) =>{
-    const user = await User.findById(req.user.id)
 
-    if (!user){
-        res.status(401)
-        throw new Error('User not found')
-    }
+  
+    
+
 
     const listings = await Listing.find({})
     
