@@ -21,9 +21,10 @@ const initialState = {
         .addCase(createListing.pending, (state)=>{
           state.isLoading = true
         })
-        .addCase(createListing.fulfilled, (state)=>{
+        .addCase(createListing.fulfilled, (state,action)=>{
           state.isLoading = false
           state.isSuccess = true
+          state.listings = action.payload
         })
         .addCase(createListing.rejected, (state, action)=>{
           state.isLoading = false
@@ -60,6 +61,7 @@ const initialState = {
         .addCase(deleteListing.fulfilled, (state, action) => {
           state.isLoading = false
           state.isSuccess = true
+          state.listings = action.payload
         })
         .addCase(deleteListing.rejected, (state, action) => {
           state.isLoading = false
@@ -116,8 +118,7 @@ export const getListing = createAsyncThunk(
   'listings/get',
   async (listingId, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.token
-      return await listingService.getListing(listingId, token)
+      return await listingService.getListing(listingId)
     } catch (error) {
       const message =
       (error.response &&

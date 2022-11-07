@@ -10,7 +10,6 @@ const createListing = async (listingData, token) => {
       Authorization: `Bearer ${token}`,
     },
   }
-  console.log({listingData})
   var bodyFormData = new FormData();
   bodyFormData.append('name', listingData.name);
   bodyFormData.append('type', listingData.type);
@@ -27,9 +26,10 @@ const createListing = async (listingData, token) => {
   bodyFormData.append('latitude', listingData.latitude);
   bodyFormData.append('userRef', listingData.userRef);
 
-  const response = await axios.post(API_URL, bodyFormData, config)
+  const firstResponse = await axios.post(API_URL, bodyFormData, config)
+  const secondResponse = await axios.get(API_URL, config)
 
-  return response.data
+  return secondResponse.data
 }
 
 const getListings = async (token) => {
@@ -39,22 +39,14 @@ const getListings = async (token) => {
     },
   }
   const response = await axios.get(API_URL, config)
+  console.log(response.data)
   return response.data
 }
 
 // Get user listing
 const getListing = async (listingId, token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      
 
-    },
-  }
-
-  
-
-  const response = await axios.get(API_URL + listingId, config)
+  const response = await axios.get(API_URL + listingId)
 
   return response.data
 }
@@ -67,10 +59,11 @@ const deleteListing = async (listingId, token) => {
     },
   }
 
-  const response = await axios.delete(API_URL + listingId,config)
+  const firstResponse = await axios.delete(API_URL + listingId,config)
+  const secondResponse = await axios.get(API_URL, config)
 
    
-  return response.data
+  return secondResponse.data
 }
 
 

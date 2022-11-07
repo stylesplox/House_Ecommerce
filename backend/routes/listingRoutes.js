@@ -9,7 +9,7 @@ const {imageHandler} = require("../middleware/imagesMiddleware")
 const { protect } = require('../middleware/authMiddleware')
 router.get('/', getListings)
 router.post('/', imageHandler('imgUrl'), protect, createListing)
-router.get('/:id',protect, getListing)
+router.get('/:id', getListing)
 router.delete('/:id',protect,deleteListing)
 
 

@@ -40,14 +40,7 @@ function Profile() {
     
     if (window.confirm('Are you sure you want to delete?')) {
       dispatch(deleteListing(listingId))
-      setTimeout(() => {
-        navigate('/profile')
-        dispatch(getListings())
-      }, 6000);
        
-        
-        
-        //dispatch(getListings())
       toast.success('Successfully deleted listing')
     }
   }

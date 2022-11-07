@@ -8,7 +8,7 @@ const createListing = asyncHandler(async (req,res) =>{
     const { bathrooms,bedrooms,discountedPrice,furnished,imgUrl,latitude,longitude,location,name,offer,
         parking,regularPrice,timestamp,type } = req.body
 
-    console.log('req.file', req.file);
+    //console.log('req.file', req.file);
   
     const file_name = new Date().getTime() +'_'+req.file.originalname;
 
@@ -47,8 +47,7 @@ const createListing = asyncHandler(async (req,res) =>{
     })
 
 
-    console.log({listing})
-    console.log(listing)
+    
     if (listing) {
         res.status(201).json({
           _id: listing._id,
@@ -76,12 +75,7 @@ const getListings = asyncHandler(async(req,res) =>{
 
 const getListing = asyncHandler(async (req, res) => {
     // Get user using the id in the JWT
-    const user = await User.findById(req.user.id)
   
-    if (!user) {
-      res.status(401)
-      throw new Error('User not found')
-    }
   
     const listing = await Listing.findById(req.params.id)
     

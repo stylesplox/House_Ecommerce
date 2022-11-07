@@ -18,8 +18,6 @@ function Listing() {
 
   const user = JSON.parse(localStorage.getItem('user'))
 
-  
-
   const dispatch = useDispatch()
   const {listingId} = useParams()
 
@@ -130,6 +128,8 @@ function Listing() {
             Contact Landlord
           </Link>
         )}
+       
+
       </div>
     </main>
   )

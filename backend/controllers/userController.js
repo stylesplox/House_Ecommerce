@@ -82,8 +82,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // @access  Private
 const getMe = asyncHandler(async (req, res) => {
      const user = await User.findById(req.params.id)
-      console.log('me')
-      console.log(user._id)
+     
       /*
       const user = {
       id: req.user._id,
